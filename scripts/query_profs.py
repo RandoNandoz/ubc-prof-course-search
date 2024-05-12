@@ -24,7 +24,6 @@ class ProfQuery:
             self.data['Professor'] = (
                 self.data['Professor'].str.split(';').map(lambda profs: [prof.strip() for prof in profs]))
             self.data = self.data.explode('Professor').sort_values(by='Subject').reset_index()
-            self.data.to_csv(r'static/grade-data-saved.csv')
         else:
             self.data = pd.read_csv(csv)
 
