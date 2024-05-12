@@ -8,7 +8,7 @@ from scripts.course import Course, Campus, Session
 
 
 class ProfQuery:
-    def __init__(self, files_path: str, csv: Optional[str] = None):
+    def __init__(self, files_path: Optional[str] = None, csv: Optional[str] = None):
         """
         :param files_path: The glob path to the CSVs by session.
         :param csv: The path to a CSV containing the query data that's already been processed.
@@ -24,6 +24,7 @@ class ProfQuery:
             self.data['Professor'] = (
                 self.data['Professor'].str.split(';').map(lambda profs: [prof.strip() for prof in profs]))
             self.data = self.data.explode('Professor').sort_values(by='Subject').reset_index()
+            self.data.to_csv(r'static/grade-data-saved.csv')
         else:
             self.data = pd.read_csv(csv)
 
