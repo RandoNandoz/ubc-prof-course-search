@@ -6,7 +6,7 @@ from flask import Flask, render_template, request
 import scripts.query_profs as qp
 
 app = Flask(__name__)
-course_searcher = qp.ProfQuery(files_path="ubc-pair-grade-data/**/**/**/*.csv")
+course_searcher = qp.ProfQuery(files_path="ubc-pair-grade-data/tableau-dashboard*/**/**/*.csv")
 
 
 @app.route('/')
