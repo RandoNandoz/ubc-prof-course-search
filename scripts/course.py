@@ -18,7 +18,7 @@ class Session(Enum):
 
 class Course:
     def __init__(self, campus: Campus, year: int, session: Session, subject: str, code: str, detail: Optional[str],
-                 section: str, desc: str):
+                 section: str, desc: str, avg: float):
         self.campus = campus
         self.year = year
         self.session = session
@@ -27,8 +27,10 @@ class Course:
         self.detail = detail
         self.section = section
         self.desc = desc
+        self.avg = avg
 
-    def __str__(self):        return f"{self.campus.value}-{self.year}{self.session.value}-{self.subject}-{self.code}{self.detail if self.detail is not None else ''}-{self.section}"
+    def __str__(self):
+        return f"{self.campus.value}-{self.year}{self.session.value}-{self.subject}-{self.code}{self.detail if self.detail is not None else ''}-{self.section}"
 
     def get_desc(self):
         return self.desc
@@ -45,8 +47,9 @@ class Course:
         details_eq = self.detail == other.detail
         section_eq = self.section == other.section
         desc_eq = self.desc == other.desc
+        average_eq = self.avg == self.avg
 
-        return campus_eq and year_eq and session_eq and subject_eq and code_eq and details_eq and section_eq and desc_eq
+        return campus_eq and year_eq and session_eq and subject_eq and code_eq and details_eq and section_eq and desc_eq and average_eq
 
     def __lt__(self, other):
         if self.year < other.year:
@@ -65,15 +68,6 @@ class Course:
             return False
 
     def __dict__(self):
-        return {
-            'campus': self.campus.value,
-            'year': self.year,
-            'session': self.session.value,
-            'subject': self.subject,
-            'code': self.code,
-            'detail': self.detail,
-            'section': self.section,
-            'desc': self.desc,
-            'ubcgrades': str(self)
-        }
-
+        return {'campus': self.campus.value, 'year': self.year, 'session': self.session.value, 'subject': self.subject,
+                'code': self.code, 'detail': self.detail, 'section': self.section, 'desc': self.desc,
+                'ubcgrades': str(self), 'avg': self.avg}

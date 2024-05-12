@@ -1,18 +1,17 @@
+import random
 import sys
 
-import random
 from flask import Flask, render_template, request
 
 import scripts.query_profs as qp
-from scripts.course import Course,Session,Campus
 
 app = Flask(__name__)
-course_searcher = qp.ProfQuery("ubc-pair-grade-data/tableau-dashboard*/**/**/*.csv", csv="static/data/courses.csv")
+course_searcher = qp.ProfQuery("ubc-pair-grade-data/tableau-dashboard-v2/**/**/*.csv")
 
 
 @app.route('/')
 def index():
-    return render_template('./index.html', courses=[Course(Campus.Vancouver, 20, Session.Summer, "sadf", 'asdf', 'dsf', 'asdfsad', desc='asdf')])
+    return render_template('./index.html')
 
 
 @app.route('/get_courses', methods=['POST'])

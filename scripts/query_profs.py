@@ -1,6 +1,5 @@
 import glob
 from typing import Optional
-import sys
 
 import pandas as pd
 from thefuzz import process
@@ -22,9 +21,8 @@ class ProfQuery:
             self.data = self.data[self.data['Professor'].str.strip() != ""]  # remove whitespace entries
 
             # turn all professors fields that are semicolon delimited into their own courses
-            self.data['Professor'] = (self.data[self.data['Professor'].str.contains(';')]['Professor'].str.split(';').map(
-                lambda profs: [prof.strip() for prof in profs]
-            ))
+            self.data['Professor'] = (
+                self.data['Professor'].str.split(';').map(lambda profs: [prof.strip() for prof in profs]))
             self.data = self.data.explode('Professor').sort_values(by='Subject').reset_index()
         else:
             self.data = pd.read_csv(csv)
@@ -54,7 +52,7 @@ class ProfQuery:
             c = Course(campus=Campus('UBCV' if str(row['Campus']) == 'UBC' else row['Campus']), year=row['Year'],
                        session=Session(row['Session']), subject=row['Subject'], code=str(row['Course']),
                        detail=(row['Detail'] if not pd.isna(row['Detail']) else None), section=str(row['Section']),
-                       desc=row['Title'])
+                       desc=row['Title'], avg=row['Avg'])
             result.append(c)
 
         # sort found courses by year, session order

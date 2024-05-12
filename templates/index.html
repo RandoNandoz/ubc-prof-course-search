@@ -35,12 +35,10 @@
         <table id="displayTable" class="table">
             <thead>
             <tr>
-                <th scope="col">Campus</th>
-                <th scope="col">Year</th>
                 <th scope="col">Session</th>
                 <th scope="col">Course</th>
-                <th scope="col">Section</th>
-                <th scope="col">UBCGrades Link</th>
+                <th scope="col">Average</th>
+                <th scope="col">UBCGrades</th>
             </tr>
             </thead>
             <tbody>
@@ -59,7 +57,7 @@
         $('#displayTable > tbody').html("")
         for (const course of data) {
             $('#displayTable > tbody:last-child').append(
-                `<tr><td>${course['campus']}</td><td>${course['year']}</td><td>${course['session']}</td><td>${course['subject'] + course['code']}</td><td>${course['section']}</td><td><a href="https://ubcgrades.com/#${course['ubcgrades']}">Link</a></td></tr>`
+                `<tr><td>${course['year']}${course['session']}</td><td>${course['subject'] + course['code']} ${course['section']}</td><td>${course['avg']}</td><td><a target="_blank" rel="noopener noreferrer" href="https://ubcgrades.com/#${course['ubcgrades']}">Link</a></td></tr>`
             )
         }
     }
