@@ -30,7 +30,7 @@ class Course:
         self.avg = avg
 
     def __str__(self):
-        return f"{self.campus.value}-{self.year}{self.session.value}-{self.subject}-{self.code}{self.detail if self.detail is not None else ''}-{self.section}"
+        return f"{self.campus.value}-{self.year}{self.session.value}-{self.subject.strip()}-{self.code.strip()}{self.detail.strip() if self.detail is not None else ''}-{self.section.strip()}"
 
     def get_desc(self):
         return self.desc

@@ -1,5 +1,11 @@
 services:
   web:
+    container_name: ubc-prof-course-search-web
+    restart: unless-stopped
     build: .
-    ports:
-      - "80:80"
+  cloudflared:
+    container_name: ubc-prof-course-search-cloudflared
+    depends_on:
+      - web
+    image: cloudflare/cloudflared
+    command: tunnel --no-autoupdate run --token ${CLOUDFLARED_TUNNEL_TOKEN}
