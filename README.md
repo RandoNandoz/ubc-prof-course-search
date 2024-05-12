@@ -1,5 +1,8 @@
 # Search Past UBC Courses by Professor
 
+## Link: https://profsearch.randyzhu.com/
+
+
 ### Description
 Search UBC profs by name, and find out what previous courses
 they have taught. Provides average, and UBCGrades link.
