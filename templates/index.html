@@ -57,7 +57,7 @@
         $('#displayTable > tbody').html("")
         for (const course of data) {
             $('#displayTable > tbody:last-child').append(
-                `<tr><td>${course['year']}${course['session']}</td><td>${course['subject'] + course['code']} ${course['section']}</td><td>${course['avg'].toFixed(2)}%</td><td><a target="_blank" rel="noopener noreferrer" href="https://ubcgrades.com/#${course['ubcgrades']}">Link</a></td></tr>`
+                `<tr><td>${course['year']}${course['session']}</td><td>${course['subject'] + course['code'] + course['detail']} ${course['section']}</td><td>${typeof course['avg'] === 'string' ? "Unreported" : course['avg'].toFixed(2) + "%"}</td><td><a target="_blank" rel="noopener noreferrer" href="https://ubcgrades.com/#${course['ubcgrades']}">Link</a></td></tr>`
             )
         }
     }

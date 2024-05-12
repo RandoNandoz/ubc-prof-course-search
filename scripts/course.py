@@ -1,6 +1,8 @@
 from enum import Enum
 from typing import Optional
 
+from numpy import isnan
+
 """
 Class for a Course at UBC
 """
@@ -18,7 +20,7 @@ class Session(Enum):
 
 class Course:
     def __init__(self, campus: Campus, year: int, session: Session, subject: str, code: str, detail: Optional[str],
-                 section: str, desc: str, avg: float):
+                 section: str, desc: str, avg: Optional[float]):
         self.campus = campus
         self.year = year
         self.session = session
@@ -69,5 +71,5 @@ class Course:
 
     def __dict__(self):
         return {'campus': self.campus.value, 'year': self.year, 'session': self.session.value, 'subject': self.subject,
-                'code': self.code, 'detail': self.detail, 'section': self.section, 'desc': self.desc,
-                'ubcgrades': str(self), 'avg': self.avg}
+                'code': self.code, 'detail': "" if self.detail is None else self.detail, 'section': self.section, 'desc': self.desc,
+                'ubcgrades': str(self), 'avg': "" if isnan(self.avg) else self.avg}
