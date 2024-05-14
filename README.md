@@ -18,7 +18,7 @@ engine for this, so pandas and some CSV handles the query.
 ### Deployment
 
 First, pull the required course data by running
-`git submodule init && git submodule update --init--recursive`.
+`git submodule init && git submodule update --init --recursive`.
 
 Install Docker, and Docker Compose v2.
 
